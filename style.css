@@ -1,0 +1,30 @@
+#navBar {
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 4%;
+    background-color: orange;
+}
+
+body {
+    margin: 0px;
+}
+
+#content {
+    margin: 8px;
+}
+
+#coyote {
+    padding-left: 0.5%;
+    display: inline;
+    font-size: 3vh;
+}
+
+#loginBtn, #signupBtn {
+    text-align: left;
+    float: right;
+    display: inline;
+    font-size: 3vh;
+    color: black;
+    text-decoration: none;
+}
