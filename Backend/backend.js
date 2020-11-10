@@ -43,6 +43,9 @@ function addUser(user, hash, salt, callback) {
     });
 }
 
+/*
+Check login credentials and assign token
+*/
 function loginUser(username, password, callback) {
     let query = "SELECT hash, salt FROM login WHERE user='" + username + "'";
     con.query(query, function (err, result) {
@@ -68,6 +71,9 @@ function loginUser(username, password, callback) {
     });
 }
 
+/* 
+verify token
+*/
 function stayLoggedIn(username, token, callback) {
     let query = "SELECT stayToken FROM login WHERE user='" + username + "'";
     con.query(query, function (err, result) {
@@ -139,6 +145,7 @@ http.createServer(function (req, res) {
                         res.write(result);
                     } else {
                         res.write("logged in");
+                        // eventually do something here to send content back 
                     }
                     res.end();
                 });
@@ -151,23 +158,7 @@ http.createServer(function (req, res) {
     }
 }).listen(8080);
 
-
-// test thing
-/*
-http.createServer(function (req, res) {
-   if (req.method == 'GET') {
-        if (req.url == '/test') {
-            console.log("success");
-            res.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': 'null'});
-            res.write('test response');
-            res.end();
-        }
-   }
-   res.end();
-    
-}).listen(8080);
-*/
-
+// runs on keyboard interupt (closes down everything)
 process.on( 'SIGINT', function() {
     console.log("Closing");
     con.end();
