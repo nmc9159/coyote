@@ -1,3 +1,4 @@
+// signup button setup
 if (document.getElementById('signup') != null) {
     document.getElementById('signup').onsubmit = function() {
         if (document.getElementById('password').value ==  document.getElementById('confirmPassword').value) {
@@ -18,6 +19,8 @@ if (document.getElementById('signup') != null) {
         }
     };
 }
+
+// login in button setup
 if (document.getElementById('login') != null) {
     document.getElementById('login').onsubmit = function() {
         const data = {
@@ -41,6 +44,8 @@ window.onload = function() {
     checkLogin();
 }
 
+// verify if user is signed in
+// eventually update page based on http response
 async function checkLogin() {
     const data = {
         type: 'stayLoggedIn',
