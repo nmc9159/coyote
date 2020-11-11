@@ -68,7 +68,7 @@ async function checkLogin() {
     logoutLi = document.getElementById("logoutLi");
     signupLi = document.getElementById("signupLi");
     loginLi = document.getElementById("loginLi");
-    notifacationsLi = document.getElementById("notifacationsLi");
+    accountLi = document.getElementById("accountLi");
     if (logged == "logged in") {
         if (loginLi) {
             loginLi.style.display = "none";
@@ -80,10 +80,10 @@ async function checkLogin() {
         if (logoutLi) {
             logoutLi.style.display = "none";
         }
-        if (notifacationsLi) {
-            notifacationsLi.style.display = "none";
+        if (accountLi) {
+            accountLi.style.display = "none";
         }
-        if (location.pathname.split('/').pop() == "notifications.html") {
+        if (location.pathname.split('/').pop() == "account.html") {
             window.location.href = "login.html";
         }
     }
