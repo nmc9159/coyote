@@ -63,13 +63,30 @@ async function checkLogin() {
     }
     let logged;
     await fetch(reqUrl, param).then(res => res.text()).then(data => {
-        console.log(data);
         logged = data;
     });
-    statusText = document.getElementById("statusText");
-    if (statusText) {
-        statusText.innerHTML = logged;
+    logoutLi = document.getElementById("logoutLi");
+    signupLi = document.getElementById("signupLi");
+    loginLi = document.getElementById("loginLi");
+    if (logged == "logged in") {
+        if (loginLi) {
+            loginLi.style.display = "none";
+        }
+        if (signupLi) {
+            signupLi.style.display = "none";
+        }
+    } else {
+        if (logoutLi) {
+            logoutLi.style.display = "none";
+        }
     }
+}
+
+
+
+function logout() {
+    sessionStorage.token = "";
+    window.location.href = "index.html";
 }
 
 async function signUp(param) {

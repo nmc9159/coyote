@@ -13,7 +13,7 @@ body {
     margin: 8px;
 }
 
-#loginBtn, #signupBtn {
+#loginBtn, #signupBtn, #logoutBtn {
     float: right;
 }
 
@@ -39,4 +39,4 @@ li a {
 
 li:hover {
     background-color: darkorange;
-  }
+}
