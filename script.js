@@ -1,3 +1,5 @@
+const reqUrl = "http://localhost:8080";
+
 // signup button setup
 if (document.getElementById('signup') != null) {
     document.getElementById('signup').onsubmit = function() {
@@ -60,7 +62,7 @@ async function checkLogin() {
         method: "POST"
     }
     let logged;
-    await fetch('https://res555574750726.rh.rit.edu:8080',param).then(res => res.text()).then(data => {
+    await fetch(reqUrl, param).then(res => res.text()).then(data => {
         console.log(data);
         logged = data;
     });
@@ -71,7 +73,7 @@ async function checkLogin() {
 }
 
 async function signUp(param) {
-    await fetch('https://res555574750726.rh.rit.edu:8080',param).then(res => res.text()).then(data => {
+    await fetch(reqUrl, param).then(res => res.text()).then(data => {
         console.log(data);
         if (data == "success") {
             const data = {
@@ -92,7 +94,7 @@ async function signUp(param) {
 }
 
 async function login(param) {
-    await fetch('https://res555574750726.rh.rit.edu:8080',param).then(res => res.text()).then(data => {
+    await fetch(reqUrl, param).then(res => res.text()).then(data => {
         console.log(data);
         if (data == "invalid username") {
             // inform user
