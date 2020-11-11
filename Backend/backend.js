@@ -1,6 +1,6 @@
 // Add libs
 var mysql = require('mysql');
-var https = require('https');
+var https = require('http');
 const fs = require('fs');
 const crypto = require('crypto');
 
@@ -101,6 +101,13 @@ function getReqBody() {
     });
     return body;
 }
+
+/*
+var options = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
+};
+*/
 
 https.createServer(function (req, res) {
     if (req.url === '/favicon.ico') {
