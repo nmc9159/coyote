@@ -57,7 +57,27 @@ if (document.getElementById('deleteForm') != null) {
             body: JSON.stringify(data),
             method: "POST"
         }
-        deleteAccount();
+        deleteAccount(param);
+        return false;
+    };
+}
+
+if (document.getElementById('notiForm') != null) {
+    getNotiSettings();
+    document.getElementById('notiForm').onsubmit = function() {
+        const data = {
+            type: 'notiUpdate',
+            username: sessionStorage.username,
+            password: document.getElementById('password').value
+        }
+        const param = {
+            headers:{
+                "content-type":"application/json"
+            },
+            body: JSON.stringify(data),
+            method: "POST"
+        }
+        updateNotiSettings(param);
         return false;
     };
 }
@@ -155,4 +175,33 @@ async function deleteAccount(param) {
     await fetch(reqUrl, param);
     sessionStorage.username = "";
     logout();
+}
+
+async function getNotiSettings() {
+    const data = {
+        type: 'notiGet',
+        username: sessionStorage.username,
+        token: sessionStorage.token
+    }
+    const param = {
+        headers:{
+            "content-type":"application/json"
+        },
+        body: JSON.stringify(data),
+        method: "POST"
+    }
+    await fetch(reqUrl, param).then(res => res.text()).then(data => {
+        if (data == "true") {
+            document.getElementById("notiCheck").checked = true;
+        } else {
+            document.getElementById("notiCheck").checked = false;
+        }
+    });
+}
+
+async function updateNotiSettings(param) {
+    if (document.getElementById("notiCheck").checked == true) {
+        // TODO
+    }
+    await fetch(reqUrl, param);
 }
