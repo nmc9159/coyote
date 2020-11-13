@@ -42,6 +42,26 @@ if (document.getElementById('login') != null) {
     };
 }
 
+// account deleetion setup
+if (document.getElementById('deleteForm') != null) {
+    document.getElementById('deleteForm').onsubmit = function() {
+        const data = {
+            type: 'delete',
+            username: sessionStorage.username,
+            password: document.getElementById('password').value
+        }
+        const param = {
+            headers:{
+                "content-type":"application/json"
+            },
+            body: JSON.stringify(data),
+            method: "POST"
+        }
+        deleteAccount();
+        return false;
+    };
+}
+
 window.onload = function() {
     checkLogin();
 }
@@ -129,4 +149,10 @@ async function login(param) {
             window.location.href = "index.html";
         }
     });
+}
+
+async function deleteAccount(param) {
+    await fetch(reqUrl, param);
+    sessionStorage.username = "";
+    logout();
 }
