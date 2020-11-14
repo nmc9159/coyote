@@ -94,11 +94,11 @@ function stayLoggedIn(username, token, callback) {
 function getNoti(username, token, callback) {
     stayLoggedIn(username, token, result => {
         if (result == true) {
-            let query = "SELECT notifacations FROM login WHERE user='" + username + "'";
+            let query = "SELECT notifications FROM login WHERE user='" + username + "'";
             con.query(query, function (err, result) {
                 if (err) throw err;
                 result = result[0];
-                return callback(result.notifacations);
+                return callback(result.notifications);
             });
         } else {
             return callback("wrong credentials");
@@ -115,7 +115,7 @@ function setNoti(username, token, value, callback) {
             } else {
                 bool = 0;
             }
-            let query = "UPDATE login SET notifacations='" + bool + "' WHERE user='" + username + "'";
+            let query = "UPDATE login SET notifications='" + bool + "' WHERE user='" + username + "'";
             con.query(query, function (err, result) {
                 if (err) throw err;
                 return callback("success");
