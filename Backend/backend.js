@@ -91,6 +91,21 @@ function stayLoggedIn(username, token, callback) {
     });
 }
 
+function getNoti(username, token, callback) {
+    stayLoggedIn(username, token, result => {
+        if (result == true) {
+            let query = "SELECT notifacations FROM login WHERE user='" + username + "'";
+            con.query(query, function (err, result) {
+                if (err) throw err;
+                result = result[0];
+                return callback(result.notifacations);
+            });
+        } else {
+            return callback("wrong credentials");
+        }
+    });
+}
+
 
 // HTTP stuff
 
@@ -144,6 +159,13 @@ https.createServer(function (req, res) {
                     }
                     res.end();
                 });
+            } else if (body.type == "notiGet") {
+                getNoti(body.username, body.token, result => {
+                    if (result != "wrong credentials") {
+                        res.write(result);
+                    }
+                    res.end();
+                });
             } else if (body.type == "stayLoggedIn") {
                 stayLoggedIn(body.username, body.token, result => {
                     if (result == "invalid username") {
@@ -152,7 +174,6 @@ https.createServer(function (req, res) {
                         res.write(result);
                     } else {
                         res.write("logged in");
-                        // eventually do something here to send content back 
                     }
                     res.end();
                 });
