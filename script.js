@@ -68,7 +68,8 @@ if (document.getElementById('notiForm') != null) {
         const data = {
             type: 'notiUpdate',
             username: sessionStorage.username,
-            password: document.getElementById('password').value
+            token: sessionStorage.token,
+            value: document.getElementById(notiCheck).checked
         }
         const param = {
             headers:{
