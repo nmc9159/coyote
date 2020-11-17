@@ -132,7 +132,7 @@ async function getNotiSettings() {
     noti = JSON.parse(sessionStorage.getItem("noti"));
     username = sessionStorage.getItem("loggedin");
     if (username) {
-        if (noti.username == "true") {
+        if (noti[username] == "true") {
             document.getElementById("notiCheck").checked = true;
         } else {
             document.getElementById("notiCheck").checked = false;
@@ -156,7 +156,7 @@ async function updateNotiSettings() {
     noti = JSON.parse(sessionStorage.getItem("noti"));
     username = sessionStorage.getItem("loggedin");
     if (username) {
-        noti.username = document.getElementById("notiCheck").checked
+        noti[username] = document.getElementById("notiCheck").checked
         sessionStorage.setItem("noti", JSON.stringify(noti));
     }
 }
